@@ -6,16 +6,21 @@
 
 int main(int argc, char** argv)
 {
-	FILE* fd1 = fopen("thousand.bin", "rb");
+	if (argc < 3)
+	{
+		printf("arg error\n");
+		return -1;
+	}
+	FILE* fd1 = fopen(argv[1], "rb");
 	if(fd1 == NULL)
 	{
-		printf("thousand.bin fopen error\n");
+		printf("first file fopen error\n");
 		return 0;
 	}
-	FILE* fd2 = fopen("five-hundred.bin", "rb");
+	FILE* fd2 = fopen(argv[2], "rb");
 	if(fd2 == NULL)
 	{
-		printf("five-hundred.bin fopen error\n");
+		printf("second file fopen error\n");
 		return 0;
 	}
 
@@ -25,13 +30,13 @@ int main(int argc, char** argv)
 	int result1 = fread(thousand, 1, 4, fd1);
 	if(result1 < 4)
 	{
-		printf("thousand.bin file is too short\n");
+		printf("first file is too short\n");
 		return 0;
 	}
 	int result2 = fread(five, 1, 4, fd2);
 	if(result2 < 4)
 	{
-		printf("five-hundred.bin file is too short\n");
+		printf("second file is too short\n");
 		return 0;
 	}
 
